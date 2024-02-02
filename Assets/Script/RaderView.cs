@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-public struct TargetData
+public struct TargetData        // 타겟 하나의 위경도 포함 모든 정보를 가지고 있는 객체
 {
     public int id;
     public string name;
@@ -25,26 +25,26 @@ public struct TargetData
 
 public class RaderView : MonoBehaviour
 {
-    List<TargetData> targetsData;
-    List<GameObject> targetsUI;
+    List<TargetData> targetsData;   //모든 타겟 데이터를 실제로 보관하는 장소
+    List<GameObject> targetsUI;     //레이더 안의 원과 삼각형 UI 개체 
 
     public GPS_Manager gpsManager;
     public float raderRange; //레이더 탐색 범위
     public float raderLat; //정수 데이터로 변환
     public float raderLon; //정수 데이터로 변환
 
-    public RectTransform OutRangeUI;
-    public RectTransform ContactRangeUI;
+    public RectTransform OutRangeUI; //레이더 외곽의 UI (N 표기)
+    public RectTransform ContactRangeUI; //초록 레이더 그림
 
-    public GameObject targetUI;
-    public Sprite targetCir;
-    public Sprite targetTri;
-    public Text monster_text;
+    public GameObject targetUI; //타겟 개체
+    public Sprite targetCir;    //레이더 범위 안일 경우 대체되는 스프라이트
+    public Sprite targetTri;    //레이더 범위 밖일 경우 대체되는 스프라이트
+    public Text monster_text;   //몬스터 등장 시 변경되는 텍스트
 
-    public float OutRangeSize;
-    public float ContactRangeSize;
-    public float targetSize;
-    public float arrowPadding;
+    public float OutRangeSize;      //외곽 레이더 사이즈
+    public float ContactRangeSize;  //초록 레이더 사이즈
+    public float targetSize;        //타겟 사이즈
+    public float arrowPadding;      //외곽 레이더와 Tri 타겟 간의 여백
 
     public bool test;
     public float testcount;
@@ -69,7 +69,7 @@ public class RaderView : MonoBehaviour
         TargetTestData();
     }
 
-    void TargetDataUpdate()
+    void TargetDataUpdate()     //GPS가 켜져 있을 경우에 사용되는 실제 데이터 예제 (1당 1m)
     {
         targetsData.Add(new TargetData(1, "test1", 3515905f, 12905995f));
         targetsData.Add(new TargetData(2, "test2", 3515998f, 12905955f));
@@ -78,7 +78,7 @@ public class RaderView : MonoBehaviour
         targetsData.Add(new TargetData(5, "test5", 3516060f, 12905928f));
         targetsData.Add(new TargetData(6, "test6", 3516058f, 12906114f));
     }
-    void TargetTestData()
+    void TargetTestData()       // GPS가 꺼졌을 경우에 사용되는 임시 데이터
     {
         targetsData.Add(new TargetData(1, "test1", 50f, 10f));
         targetsData.Add(new TargetData(2, "test2", 20f, 20f));
@@ -102,6 +102,8 @@ public class RaderView : MonoBehaviour
         //    raderLat = gpsManager.latitude * 100000f;
         //    raderLon = gpsManager.longitude * 100000f;
         //}
+        
+        //GPS 연결 되어 있을 경우 위 코드 주석 해제 필수
 
         TargetUIUpdate();
         TargetUIPositionUpdate();
@@ -109,7 +111,7 @@ public class RaderView : MonoBehaviour
 
     }
 
-    void TargetUIUpdate()
+    void TargetUIUpdate() //targetsData와 UI의 갯수를 동기화하는 함수
     {
         if (targetsData.Count > targetsUI.Count) //데이터보다 UI가 적으면
         {
@@ -131,21 +133,21 @@ public class RaderView : MonoBehaviour
 
     }
 
-    void TargetUIPositionUpdate()
+    void TargetUIPositionUpdate()   //타겟 UI의 위치를 GPS 회전에 맞춰 매 프레임 위치를 이동시키는 함수
     {
         int count = 0;
         int rangeInMonsterCount = 0;
 
-        OutRangeUI.localRotation = Quaternion.Euler(0, 0, gpsManager.magneticHeading);
-        ContactRangeUI.localRotation = Quaternion.Euler(0, 0, -gpsManager.magneticHeading);
+        OutRangeUI.localRotation = Quaternion.Euler(0, 0, gpsManager.magneticHeading);      //레이더 바깥 부분 회전 (GPS와 동기화)
+        ContactRangeUI.localRotation = Quaternion.Euler(0, 0, -gpsManager.magneticHeading); //레이더 안쪽 부분 역회전 (회전 상쇄)
 
-        foreach (TargetData data in targetsData)
+        foreach (TargetData data in targetsData)    // 모든 타겟에 대하여 작업
         {
             float deltaLat = (data.lat - raderLat);
             float deltaLon = (data.lon - raderLon);
             float distance = Vector2.Distance(new Vector2(deltaLon, deltaLat), new Vector2(0, 0));
 
-            if (distance <= raderRange)
+            if (distance <= raderRange) // 레이더 범위 안의 타겟은 원으로 변경하는 코드
             {
                 targetsUI[count].GetComponent<Image>().sprite = targetCir;
                 targetsUI[count].transform.GetChild(0).GetComponent<Text>().text = distance.ToString("N0") +"m";
@@ -155,7 +157,7 @@ public class RaderView : MonoBehaviour
                 targetsUI[count].transform.localRotation = Quaternion.Euler(0, 0, 0);
                 rangeInMonsterCount++;
             }
-            else
+            else // 레이더 범위 밖의 타겟은 화살표로 변경하는 코드
             {
                 float rot = GetAngle(new Vector2(0, 0), new Vector2(deltaLon, deltaLat));
                 targetsUI[count].GetComponent<Image>().sprite = targetTri;
@@ -169,7 +171,7 @@ public class RaderView : MonoBehaviour
             count = count + 1;
         }
 
-        if (rangeInMonsterCount > 0)
+        if (rangeInMonsterCount > 0)    //레이더 범위 안에 몬스터가 존재하는 경우 작동하는 코드
         {
             monster_text.text = "Monster!!!!";
         }
@@ -179,13 +181,13 @@ public class RaderView : MonoBehaviour
         }
     }
 
-    float GetAngle(Vector2 start, Vector2 end)
+    float GetAngle(Vector2 start, Vector2 end)      //수학 회전 각도 수치를 유니티의 회전 각도로 변형하는 코드
     {
         Vector2 v2 = end - start;
         return (450.0f - Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg) % 360.0f;
     }
 
-    public void TargetMoveTest()
+    public void TargetMoveTest()    //모든 타겟의 위도 값을 초당 1씩 위, 아래로 바꾸는 테스트 코드
     {
         for(int i = 0; i < targetsData.Count; i++)
         {

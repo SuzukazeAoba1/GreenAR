@@ -163,6 +163,7 @@ public class RaderView : MonoBehaviour
                 targetsUI[count].GetComponent<Image>().sprite = targetTri;
                 targetsUI[count].transform.GetChild(0).GetComponent<Text>().text = distance.ToString("N0") + "m";
                 targetsUI[count].transform.GetChild(0).localPosition = Vector3.up * 50;
+                targetsUI[count].transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, 0);
                 targetsUI[count].transform.localPosition = (new Vector3(deltaLon, deltaLat, 0).normalized) * (((OutRangeSize + targetSize) / 2) + arrowPadding);
                 targetsUI[count].transform.localRotation = Quaternion.Euler(0, 0, -rot);
                 //모든 화살표는 중심에서 정해진 거리에 위치 (단위 벡터 * 거리)

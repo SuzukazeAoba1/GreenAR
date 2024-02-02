@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 7aca6e3729e90e6478651d1457ac9ac6
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: 2422c8a5e201fa341bcd48963b422cb2
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a0a2d50378d92f34c984473811a7805e, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 438d4540510d5ee43a57d2d9a4c3556c, type: 2}

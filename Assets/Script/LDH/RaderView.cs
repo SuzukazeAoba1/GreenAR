@@ -6,27 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-public struct TargetData        // 타겟 하나의 위경도 포함 모든 정보를 가지고 있는 객체
-{
-    public int id;
-    public string name;
-    public float lat;
-    public float lon;
-
-    public TargetData(int id, string name, float lat, float lon)
-    {
-        this.id = id;
-        this.name = name;
-        this.lat = lat;
-        this.lon = lon;
-    }
-
-};
-
 public class RaderView : MonoBehaviour
 {
-    List<TargetData> targetsData;   //모든 타겟 데이터를 실제로 보관하는 장소
-    List<GameObject> targetsUI;     //레이더 안의 원과 삼각형 UI 개체 
+    public TargetDataList dataList;
+    private List<GameObject> targetsUI;     //레이더 안의 원과 삼각형 UI 개체 
 
     public GPS_Manager gpsManager;
     public float raderRange; //레이더 탐색 범위
@@ -45,9 +28,8 @@ public class RaderView : MonoBehaviour
     public float ContactRangeSize;  //초록 레이더 사이즈
     public float targetSize;        //타겟 사이즈
     public float arrowPadding;      //외곽 레이더와 Tri 타겟 간의 여백
+    public int rangeInMonsterCount;
 
-    public bool test;
-    public float testcount;
 
     // Start is called before the first frame update
     void Start()
@@ -56,36 +38,10 @@ public class RaderView : MonoBehaviour
         ContactRangeUI.sizeDelta = new Vector2(ContactRangeSize, ContactRangeSize);
 
         targetUI.GetComponent<RectTransform>().sizeDelta = new Vector2(targetSize, targetSize);
-
-        targetsData = new List<TargetData>();
         targetsUI = new List<GameObject>();
 
         raderLat = 0;
         raderLon = 0;
-
-        testcount = 0;
-
-        //TargetDataUpdate();
-        TargetTestData();
-    }
-
-    void TargetDataUpdate()     //GPS가 켜져 있을 경우에 사용되는 실제 데이터 예제 (1당 1m)
-    {
-        targetsData.Add(new TargetData(1, "test1", 3515905f, 12905995f));
-        targetsData.Add(new TargetData(2, "test2", 3515998f, 12905955f));
-        targetsData.Add(new TargetData(3, "test3", 3515938f, 12905794f));
-        targetsData.Add(new TargetData(4, "test4", 3516042f, 12905828f));
-        targetsData.Add(new TargetData(5, "test5", 3516060f, 12905928f));
-        targetsData.Add(new TargetData(6, "test6", 3516058f, 12906114f));
-    }
-    void TargetTestData()       // GPS가 꺼졌을 경우에 사용되는 임시 데이터
-    {
-        targetsData.Add(new TargetData(1, "test1", 50f, 10f));
-        targetsData.Add(new TargetData(2, "test2", 20f, 20f));
-        targetsData.Add(new TargetData(3, "test3", 30f, 30f));
-        targetsData.Add(new TargetData(4, "test4", 40f, 40f));
-        targetsData.Add(new TargetData(5, "test5", 50f, 50f));
-        targetsData.Add(new TargetData(6, "test6", 60f, 60f));
     }
 
     private void Update()
@@ -97,51 +53,48 @@ public class RaderView : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
-        //if (gpsManager.latitude != 0 && gpsManager.longitude != 0)
-        //{
-        //    raderLat = gpsManager.latitude * 100000f;
-        //    raderLon = gpsManager.longitude * 100000f;
-        //}
-        
-        //GPS 연결 되어 있을 경우 위 코드 주석 해제 필수
+        if (gpsManager.receiveGPS)
+        {
+            raderLat = gpsManager.latitude * 100000f;
+            raderLon = gpsManager.longitude * 100000f;
+        }
+
 
         TargetUIUpdate();
         TargetUIPositionUpdate();
-        TargetMoveTest();
-
     }
 
     void TargetUIUpdate() //targetsData와 UI의 갯수를 동기화하는 함수
     {
-        if (targetsData.Count > targetsUI.Count) //데이터보다 UI가 적으면
+        if (dataList.targetsData.Count > targetsUI.Count) //데이터보다 UI가 적으면
         {
-            for (int i = targetsUI.Count; i < targetsData.Count; i++)  //필요한 UI 추가
+            for (int i = targetsUI.Count; i < dataList.targetsData.Count; i++)  //필요한 UI 추가
             {
                 GameObject buf = Instantiate(targetUI);
                 buf.transform.SetParent(OutRangeUI.transform, true);
                 targetsUI.Add(buf);
             }
         }
-        else if (targetsData.Count < targetsUI.Count)
+        else if (dataList.targetsData.Count < targetsUI.Count)
         {
-            for (int i = targetsData.Count; i < targetsUI.Count; i++)  //필요 없는 UI 삭제
+            for (int i = dataList.targetsData.Count; i < targetsUI.Count; i++)  //필요 없는 UI 삭제
             {
                 Destroy(targetsUI[targetsUI.Count - 1]);
                 targetsUI.RemoveAt(targetsUI.Count - 1);
             }
         }
-
     }
 
     void TargetUIPositionUpdate()   //타겟 UI의 위치를 GPS 회전에 맞춰 매 프레임 위치를 이동시키는 함수
-    {
-        int count = 0;
-        int rangeInMonsterCount = 0;
+    { 
+        rangeInMonsterCount = 0;
 
         OutRangeUI.localRotation = Quaternion.Euler(0, 0, gpsManager.magneticHeading);      //레이더 바깥 부분 회전 (GPS와 동기화)
         ContactRangeUI.localRotation = Quaternion.Euler(0, 0, -gpsManager.magneticHeading); //레이더 안쪽 부분 역회전 (회전 상쇄)
 
-        foreach (TargetData data in targetsData)    // 모든 타겟에 대하여 작업
+        int count = 0;
+
+        foreach (TargetData data in dataList.targetsData)    // 모든 타겟에 대하여 작업
         {
             float deltaLat = (data.lat - raderLat);
             float deltaLon = (data.lon - raderLon);
@@ -188,24 +141,4 @@ public class RaderView : MonoBehaviour
         return (450.0f - Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg) % 360.0f;
     }
 
-    public void TargetMoveTest()    //모든 타겟의 위도 값을 초당 1씩 위, 아래로 바꾸는 테스트 코드
-    {
-        for(int i = 0; i < targetsData.Count; i++)
-        {
-            TargetData buf = targetsData[i];
-            
-            if(!test) buf.lat += 0.1f;
-            else     buf.lat -= 0.1f;
-
-            targetsData[i] = buf;
-        }
-
-        testcount += 0.1f;
-
-        if (testcount > 100f)
-        {
-            test = !test;
-            testcount = 0f;
-        }
-    }
 }

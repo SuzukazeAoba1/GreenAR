@@ -35,7 +35,7 @@ public class TargetDataList : MonoBehaviour
 
         //testcount = 0;
 
-        //TargetGPSData();
+        TargetGPSData();
         //TargetTestData();
         //InvokeRepeating("TargetMoveTest", 0, 1f);
     }

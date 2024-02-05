@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class StarForceBar : MonoBehaviour, IPointerClickHandler {
     public Image starForceBar;
     public Image starForceHighlight;
-
+    public float starForceWidth = 350f;
     Enemy enemy;
 
     void Start() {
@@ -38,11 +38,11 @@ public class StarForceBar : MonoBehaviour, IPointerClickHandler {
         RectTransform barRect = starForceBar.rectTransform;
         RectTransform highlightRect = starForceHighlight.rectTransform;
 
-        float barLeftX = barRect.position.x - barRect.rect.width * 0.5f;
-        float barRightX = barRect.position.x + barRect.rect.width * 0.5f;
+        float barLeftX = barRect.position.x - starForceWidth;
+        float barRightX = barRect.position.x + starForceWidth;
 
-        float highlightLeftX = highlightRect.position.x - highlightRect.rect.width * 0.5f;
-        float highlightRightX = highlightRect.position.x + highlightRect.rect.width * 0.5f;
+        float highlightLeftX = highlightRect.position.x - starForceWidth;
+        float highlightRightX = highlightRect.position.x + starForceWidth;
 
         return (barRightX >= highlightLeftX && barLeftX <= highlightRightX);
     }

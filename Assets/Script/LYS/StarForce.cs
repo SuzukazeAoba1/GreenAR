@@ -28,6 +28,7 @@ public class StarForce : MonoBehaviour
 
         // 좌우로 이동
         currentPosition.x += barMoveSpeed * direction * Time.deltaTime;
+        currentPosition.y = starForceBG.rectTransform.position.y;
 
         // 왼쪽 끝으로 갔다면 방향을 오른쪽으로 전환
         if (currentPosition.x < starForceBG.rectTransform.position.x - starForceBG.rectTransform.rect.width * 0.16f)
@@ -43,5 +44,7 @@ public class StarForce : MonoBehaviour
         }
 
         starForceBar.rectTransform.position = currentPosition;
+
+
     }
 }

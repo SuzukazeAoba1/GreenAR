@@ -356,7 +356,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 254602364580106728, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
   m_PrefabInstance: {fileID: 9202721711813463324}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1570595330}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9942b6f627f241b408e81456943f82e0, type: 3}
@@ -559,6 +559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9202721711813463325}
     m_Modifications:
+    - target: {fileID: 3902255691852705347, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+      propertyPath: dataList
+      value: 
+      objectReference: {fileID: 1570595331}
     - target: {fileID: 6182730530511909735, guid: 970caff8928e608408cdea2252848ad7, type: 3}
       propertyPath: m_Name
       value: GPSdemo
@@ -653,6 +657,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8814006400930430747, guid: 970caff8928e608408cdea2252848ad7, type: 3}
   m_PrefabInstance: {fileID: 1375092358}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1570595330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5727414186623656746, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
+  m_PrefabInstance: {fileID: 9202721711813463324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570595331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570595330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5311c56babd4774793c83c1aba7f863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetsData: []
 --- !u!1 &1655942475
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1894479916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +1011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2012635416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &2095932976
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1185,7 +1207,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8734599057404456874, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1375092359}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5727414186623656746, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1570595331}
   m_SourcePrefab: {fileID: 100100000, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
 --- !u!224 &9202721711813463325 stripped
 RectTransform:

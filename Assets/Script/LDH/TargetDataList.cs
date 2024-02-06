@@ -23,22 +23,24 @@ public struct TargetData        // 타겟 하나의 위경도 포함 모든 정보를 가지고 있
 
 public class TargetDataList : MonoBehaviour
 {
-    public List<TargetData> targetsData;   //모든 타겟 데이터를 실제로 보관하는 장소
     public GPS_Manager gpsManager;
+    public bool debugMode;
+    public List<TargetData> targetsData;   //모든 타겟 데이터를 실제로 보관하는 장소
 
-    //bool test;
-    //float testcount;
-
+    private void Awake()
+    {
+        gpsManager.OnGPSEvent += TargetGPSData;
+        gpsManager.debugMode = debugMode;
+    }
     // Start is called before the first frame update
     void Start()
     {
         targetsData = new List<TargetData>();
 
-        //testcount = 0;
-
-        TargetTestData();
-        gpsManager.OnGPSEvent += TargetGPSData;
-        //InvokeRepeating("TargetMoveTest", 0, 1f);
+        if (debugMode)
+        {
+            TargetTestData();
+        }
     }
     void TargetTestData()       // GPS가 꺼졌을 경우에 사용되는 임시 데이터
     {
@@ -61,29 +63,4 @@ public class TargetDataList : MonoBehaviour
         targetsData.Add(new TargetData(5, "test5", 3516060f, 12905928f));
         targetsData.Add(new TargetData(6, "test6", 3516058f, 12906114f));
     }
-
-    //public void TargetMoveTest()    //모든 타겟의 위도 값을 초당 1씩 위, 아래로 바꾸는 테스트 코드
-    //{
-    //    addcooltime = true;
-
-    //    for (int i = 0; i < targetsData.Count; i++)
-    //    {
-    //        TargetData buf = targetsData[i];
-
-    //        if (!test) buf.lat += 0.1f;
-    //        else buf.lat -= 0.1f;
-
-    //        targetsData[i] = buf;
-    //    }
-
-    //    testcount += 0.1f;
-
-    //    if (testcount > 50f)
-    //    {
-    //        test = !test;
-    //        testcount = 0f;
-    //    }
-
-    //    addcooltime = false;
-    //}
 }

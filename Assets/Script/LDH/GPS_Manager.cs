@@ -24,6 +24,7 @@ public class GPS_Manager : MonoBehaviour
 
     public float resendTime = 1.0f;
     public bool receiveGPS = false;
+    public bool debugMode;
 
 
     // Start is called before the first frame update
@@ -34,7 +35,14 @@ public class GPS_Manager : MonoBehaviour
 
     public IEnumerator GPS_On()
     {
-        
+        if(debugMode)
+        {
+            latitude_text.gameObject.SetActive(true);
+            longitude_text.gameObject.SetActive(true);
+            magnetic_text.gameObject.SetActive(true);
+            true_text.gameObject.SetActive(true);
+        }
+
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             Permission.RequestUserPermission(Permission.FineLocation);

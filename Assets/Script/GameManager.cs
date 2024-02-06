@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     private RectTransform currentUI;
     public GameState gameState = GameState.rador;
 
+    public GameObject Origin;
+    public GameObject Session;
+    public GameObject Camera;
+    public GameObject Monster;
+
     public RectTransform radorUI;
     public RectTransform arUI;
     public RectTransform combatUI;
@@ -48,29 +53,55 @@ public class GameManager : MonoBehaviour
             case 1:
                 gameState = GameState.rador;
                 currentUI = radorUI;
+                ARCamChange(false);
                 break;
             case 2:
                 gameState = GameState.ar;
                 currentUI = arUI;
+                ARCamChange(true);
+                Monster.SetActive(true);
                 break;
             case 3:
                 gameState = GameState.combat;
                 currentUI = combatUI;
+                ARCamChange(true);
                 break;
             case 4:
                 gameState = GameState.result;
                 currentUI = resultUI;
+                ARCamChange(false);
                 break;
             case 5:
                 gameState = GameState.dogam;
                 currentUI = dogamUI;
+                ARCamChange(false);
                 break;
             default:
                 gameState = GameState.rador;
                 currentUI = radorUI;
+                ARCamChange(false);
                 break;
         }
 
         currentUI.localScale = new Vector3(1, 1, 1);
     }
+
+    void ARCamChange(bool ARCam)
+    {
+        if(ARCam)
+        {
+            Origin.SetActive(true);
+            Session.SetActive(true);
+            Camera.SetActive(false);
+        }
+        else
+        {
+            Origin.SetActive(false);
+            Session.SetActive(false);
+            Camera.SetActive(true);
+            Monster.SetActive(false);
+        }
+
+    }
+
 }

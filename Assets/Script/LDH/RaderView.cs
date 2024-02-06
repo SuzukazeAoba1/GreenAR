@@ -19,6 +19,7 @@ public class RaderView : MonoBehaviour
     public RectTransform OutRangeUI; //레이더 외곽의 UI (N 표기)
     public RectTransform ContactRangeUI; //초록 레이더 그림
 
+    public GameObject ARButtonUI;
     public GameObject targetUI; //타겟 개체
     public Sprite targetCir;    //레이더 범위 안일 경우 대체되는 스프라이트
     public Sprite targetTri;    //레이더 범위 밖일 경우 대체되는 스프라이트
@@ -128,10 +129,12 @@ public class RaderView : MonoBehaviour
         if (rangeInMonsterCount > 0)    //레이더 범위 안에 몬스터가 존재하는 경우 작동하는 코드
         {
             monster_text.text = "Monster!!!!";
+            ARButtonUI.SetActive(true);
         }
         else
         {
             monster_text.text = "";
+            ARButtonUI.SetActive(false);
         }
     }
 

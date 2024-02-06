@@ -657,6 +657,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8814006400930430747, guid: 970caff8928e608408cdea2252848ad7, type: 3}
   m_PrefabInstance: {fileID: 1375092358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1544245049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9189462031038172267, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+  m_PrefabInstance: {fileID: 1375092358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a04938f7045fd04b8cb57f471c0a0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1570595330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5727414186623656746, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
@@ -675,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetsData: []
+  gpsManager: {fileID: 1544245049}
 --- !u!1 &1655942475
 GameObject:
   m_ObjectHideFlags: 0

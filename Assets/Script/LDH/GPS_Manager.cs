@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class GPS_Manager : MonoBehaviour
 {
+    public event EventHandler OnGPSEvent;
     public float latitude = 0;
     public float longitude = 0;
     public float magneticHeading = 0;
@@ -87,9 +89,9 @@ public class GPS_Manager : MonoBehaviour
         }
 
         // 7. GPS 정보 출력
-
         receiveGPS = true;
-        while(receiveGPS)
+        OnGPSEvent?.Invoke(this, EventArgs.Empty);
+        while (receiveGPS)
         {
             yield return new WaitForSeconds(resendTime);
             li = Input.location.lastData;

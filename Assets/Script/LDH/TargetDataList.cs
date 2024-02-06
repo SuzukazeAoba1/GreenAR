@@ -24,6 +24,7 @@ public struct TargetData        // 타겟 하나의 위경도 포함 모든 정보를 가지고 있
 public class TargetDataList : MonoBehaviour
 {
     public List<TargetData> targetsData;   //모든 타겟 데이터를 실제로 보관하는 장소
+    public GPS_Manager gpsManager;
 
     //bool test;
     //float testcount;
@@ -35,20 +36,9 @@ public class TargetDataList : MonoBehaviour
 
         //testcount = 0;
 
-        TargetGPSData();
-        //TargetTestData();
+        TargetTestData();
+        gpsManager.OnGPSEvent += TargetGPSData;
         //InvokeRepeating("TargetMoveTest", 0, 1f);
-    }
-
-    void TargetGPSData()     //GPS가 켜져 있을 경우에 사용되는 실제 데이터 예제 (1당 1m)
-    {
-        targetsData.Add(new TargetData(0, "test0", 3515955f, 12906030f));
-        targetsData.Add(new TargetData(1, "test1", 3515905f, 12905995f));
-        targetsData.Add(new TargetData(2, "test2", 3515998f, 12905955f));
-        targetsData.Add(new TargetData(3, "test3", 3515938f, 12905794f));
-        targetsData.Add(new TargetData(4, "test4", 3516042f, 12905828f));
-        targetsData.Add(new TargetData(5, "test5", 3516060f, 12905928f));
-        targetsData.Add(new TargetData(6, "test6", 3516058f, 12906114f));
     }
     void TargetTestData()       // GPS가 꺼졌을 경우에 사용되는 임시 데이터
     {
@@ -58,6 +48,18 @@ public class TargetDataList : MonoBehaviour
         targetsData.Add(new TargetData(4, "test4", 40f, 40f));
         targetsData.Add(new TargetData(5, "test5", 50f, 50f));
         targetsData.Add(new TargetData(6, "test6", 60f, 60f));
+    }
+
+    void TargetGPSData(object sender, EventArgs eventArgs)     //GPS가 켜져 있을 경우에 사용되는 실제 데이터 예제 (1당 1m)
+    {
+        targetsData.Clear();
+        targetsData.Add(new TargetData(0, "test0", 3515955f, 12906030f));
+        targetsData.Add(new TargetData(1, "test1", 3515905f, 12905995f));
+        targetsData.Add(new TargetData(2, "test2", 3515998f, 12905955f));
+        targetsData.Add(new TargetData(3, "test3", 3515938f, 12905794f));
+        targetsData.Add(new TargetData(4, "test4", 3516042f, 12905828f));
+        targetsData.Add(new TargetData(5, "test5", 3516060f, 12905928f));
+        targetsData.Add(new TargetData(6, "test6", 3516058f, 12906114f));
     }
 
     //public void TargetMoveTest()    //모든 타겟의 위도 값을 초당 1씩 위, 아래로 바꾸는 테스트 코드

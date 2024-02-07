@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IntroScene : MonoBehaviour
+public class SceneChange : MonoBehaviour
 {
-    public void nextScene()
+    public void MainScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void BattleScene()
+    {
+        SceneManager.LoadScene("BattleScene");
     }
 }

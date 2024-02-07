@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
             EnemyName.text = "";
             AttackMessage.gameObject.SetActive(false);
             Debug.Log("»ç¸Á");
-            SceneManager.LoadScene("ResultScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 }

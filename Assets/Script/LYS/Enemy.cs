@@ -19,12 +19,14 @@ public class Enemy : MonoBehaviour
     public Text AttackMessage;
     public Text EnemyName;
 
+    public EnemyName currentEnemyType;
+
     private void Start() {
         currentHealth = maxHealth;
     }
 
     private void Update() {
-        EnemyName.text = currentEnemyName.ToString() + "\n현재 체력: " + currentHealth;
+        EnemyName.text = currentEnemyType.ToString() + "\n현재 체력: " + currentHealth;
 
         if(Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -61,6 +63,4 @@ public class Enemy : MonoBehaviour
             SceneManager.LoadScene("ResultScene");
         }
     }
-
-    public EnemyName currentEnemyName;
 }

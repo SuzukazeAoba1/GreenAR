@@ -28,7 +28,7 @@ public class StarForceBar : MonoBehaviour, IPointerClickHandler {
             } else {
                 enemy.TakeDamage(3);
             }
-            enemy.EnemyName.text = enemy.currentEnemyName.ToString() + "\n현재 체력: " + enemy.currentHealth;
+            enemy.EnemyName.text = enemy.currentEnemyType.ToString() + "\n현재 체력: " + enemy.currentHealth;
             enemy.StartCoroutine("ShowAttackText");
         }
     }

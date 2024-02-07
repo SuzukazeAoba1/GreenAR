@@ -682,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starForceBar: {fileID: 777105557}
   starForceHighlight: {fileID: 622001828}
+  starForceWidth: 350
 --- !u!114 &777105557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,10 +965,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   AttackMessage: {fileID: 555440768}
   EnemyName: {fileID: 332286276}
-  currentEnemyName: 0
+  currentEnemyType: 0
 --- !u!65 &1041214880
 BoxCollider:
   m_ObjectHideFlags: 0

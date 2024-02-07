@@ -151,7 +151,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -542,6 +542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9202721711813463325}
     m_Modifications:
+    - target: {fileID: 1485514147956718186, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2440990060904352030, guid: 970caff8928e608408cdea2252848ad7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -558,6 +562,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3446646580281754372, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446646580281754372, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3902255691852705347, guid: 970caff8928e608408cdea2252848ad7, type: 3}
       propertyPath: dataList
       value: 
@@ -566,6 +578,10 @@ PrefabInstance:
       propertyPath: ARButtonUI
       value: 
       objectReference: {fileID: 250343995}
+    - target: {fileID: 5131367245752106524, guid: 970caff8928e608408cdea2252848ad7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 50587bbd0912155499e92b9e6567a9bf, type: 3}
     - target: {fileID: 6182730530511909735, guid: 970caff8928e608408cdea2252848ad7, type: 3}
       propertyPath: m_Name
       value: GPSdemo
@@ -1096,8 +1112,8 @@ Camera:
   m_GameObject: {fileID: 2095932975}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

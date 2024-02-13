@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Missile : MonoBehaviour {
-    public float missileHP = 50;
+    public float missileHP = 20;
     public float currentHP;
     public GameObject missilePrefab;
     public float missileSpeed = 5f;
@@ -34,7 +34,6 @@ public class Missile : MonoBehaviour {
 
     public void TakeDamage(float damageValue) {
         currentHP -= damageValue;
-        Debug.Log("현재 체력: " + currentHP);
 
         if(currentHP <= 0) {
             Destroy(missile);

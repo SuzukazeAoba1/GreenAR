@@ -31,15 +31,15 @@ public class StarForce : MonoBehaviour
         currentPosition.y = starForceBG.rectTransform.position.y;
 
         // 왼쪽 끝으로 갔다면 방향을 오른쪽으로 전환
-        if (currentPosition.x < starForceBG.rectTransform.position.x - starForceBG.rectTransform.rect.width * 0.16f)
+        if (currentPosition.x < starForceBG.rectTransform.position.x - starForceBG.rectTransform.rect.width * 0.5f)
         {
-            currentPosition.x = starForceBG.rectTransform.position.x - starForceBG.rectTransform.rect.width * 0.16f;
+            currentPosition.x = starForceBG.rectTransform.position.x - starForceBG.rectTransform.rect.width * 0.5f;
             direction = 1f;
         }
         // 오른쪽 끝으로 갔다면 방향을 왼쪽으로 전환
-        else if (currentPosition.x > starForceBG.rectTransform.position.x + starForceBG.rectTransform.rect.width * 0.16f)
+        else if (currentPosition.x > starForceBG.rectTransform.position.x + starForceBG.rectTransform.rect.width * 0.5f)
         {
-            currentPosition.x = starForceBG.rectTransform.position.x + starForceBG.rectTransform.rect.width * 0.16f;
+            currentPosition.x = starForceBG.rectTransform.position.x + starForceBG.rectTransform.rect.width * 0.5f;
             direction = -1f;
         }
 

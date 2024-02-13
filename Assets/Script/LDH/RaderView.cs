@@ -91,7 +91,7 @@ public class RaderView : MonoBehaviour
         rangeInMonsterCount = 0;
 
         OutRangeUI.localRotation = Quaternion.Euler(0, 0, gpsManager.magneticHeading);      //레이더 바깥 부분 회전 (GPS와 동기화)
-        ContactRangeUI.localRotation = Quaternion.Euler(0, 0, -gpsManager.magneticHeading); //레이더 안쪽 부분 역회전 (회전 상쇄)
+        //ContactRangeUI.localRotation = Quaternion.Euler(0, 0, -gpsManager.magneticHeading); //레이더 안쪽 부분 역회전 (회전 상쇄)
 
         int count = 0;
 

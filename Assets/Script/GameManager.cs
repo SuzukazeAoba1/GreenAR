@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void UILoad(int goui)
     {
-        currentUI.localScale = new Vector3(0, 0, 0);
+        currentUI.gameObject.SetActive(false);
         switch(goui)
         {
 
@@ -82,8 +82,7 @@ public class GameManager : MonoBehaviour
                 ARCamChange(false);
                 break;
         }
-
-        currentUI.localScale = new Vector3(1, 1, 1);
+        currentUI.gameObject.SetActive(true);
     }
 
     void ARCamChange(bool ARCam)

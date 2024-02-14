@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
             // 처치하면 승리UI
             // victoryUI.gameObject.SetActive(true);
             //Time.timeScale = 0f;
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("MainScene2");
         }
     }
 

@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/MainScene2.unity
+    guid: 201aeabbe1a3cfd459124c5df4302775
+  - enabled: 1
+    path: Assets/Scenes/MainScene3.unity
+    guid: 7e3197a0bfd63ad469529a5b1de5635b
+  - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: 7aca6e3729e90e6478651d1457ac9ac6
   - enabled: 1

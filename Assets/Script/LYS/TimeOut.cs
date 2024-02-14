@@ -26,7 +26,7 @@ public class TimeOut : MonoBehaviour
             // 시간 종료되면 패배UI
             // defeatUI.gameObject.SetActive(true);
             // Time.timeScale = 0f;
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("MainScene3");
         }
     }
 }

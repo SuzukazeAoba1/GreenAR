@@ -2739,6 +2739,10 @@ PrefabInstance:
       propertyPath: Session
       value: 
       objectReference: {fileID: 1894479915}
+    - target: {fileID: 254602364580106728, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
+      propertyPath: questsystem
+      value: 
+      objectReference: {fileID: 9202721711813463329}
     - target: {fileID: 475055649032561983, guid: a3e649b0d0c162049a9383918be86ca1, type: 3}
       propertyPath: m_IsActive
       value: 0

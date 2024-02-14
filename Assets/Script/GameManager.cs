@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private RectTransform currentUI;
     public GameState gameState = GameState.rador;
 
+    public Questsystem questsystem;
+
     public GameObject Origin;
     public GameObject Session;
     public GameObject Camera;

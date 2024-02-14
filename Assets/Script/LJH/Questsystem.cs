@@ -6,13 +6,19 @@ public class Questsystem : MonoBehaviour
 {
 
     public string[] currentQuest;
+    public GameObject[] currentUI;
+
     public string[] quest1;
     public string[] quest2;
     public string[] quest3;
+    public GameObject[] questUI1;
+    public GameObject[] questUI2;
+    public GameObject[] questUI3;
 
     public string currentText;
     int questLength;
     public int textNumber;
+    public int uiNumber;
 
     public StringDelay questText;
     // Start is called before the first frame update
@@ -78,7 +84,7 @@ public class Questsystem : MonoBehaviour
             currentText = currentQuest[textNumber];
             questText.StringPlay();
         }
-        else
+        else if(uiNumber < currentUI.Length - 1)
         {
             Debug.Log("Äù½ºÆ® ³¡³²");
         }

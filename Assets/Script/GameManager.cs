@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.ar;
                 currentUI = arUI;
                 ARCamChange(true);
-                Monster.SetActive(true);
                 break;
             case 3:
                 gameState = GameState.combat;
@@ -98,7 +97,6 @@ public class GameManager : MonoBehaviour
             Origin.SetActive(false);
             Session.SetActive(false);
             Camera.SetActive(true);
-            Monster.SetActive(false);
         }
 
     }

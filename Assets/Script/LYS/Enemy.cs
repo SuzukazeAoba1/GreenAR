@@ -11,6 +11,8 @@ public enum EnemyName {
 
 public class Enemy : MonoBehaviour
 {
+    public AudioSource audioSource;
+
     public int maxHealth = 200;
     public int currentHealth;
     public bool canTakeDamage = true; // 광클 방지용
@@ -24,7 +26,6 @@ public class Enemy : MonoBehaviour
     public EnemyName currentEnemyType;
 
     Animator anim;
-
 
     private void Start() {
         anim = GetComponent<Animator>();
